@@ -1,0 +1,338 @@
+{
+	"variables": [],
+	"info": {
+		"name": "aspnetcore-modelbindingexamples",
+		"_postman_id": "c074b2ff-b53d-63d9-0da3-34057bc6c3e8",
+		"description": "Samples to experiment with modelbinding in ASP.NET Core.\nThe example application can be found on https://github.com/sigged/aspnetcore-modelbindingexamples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basics - Binding to Primitives /Home/ActionWithPrimitives",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57420/Home/ActionWithPrimitives?firstname=Mack&isCaptain=true&age=45&legs=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57420",
+					"path": [
+						"Home",
+						"ActionWithPrimitives"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Mack",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "isCaptain",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "age",
+							"value": "45",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "legs",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Shows how request values can be bound to primivite types.\n\nhttp://localhost:57420/Home/ActionWithPrimitives"
+			},
+			"response": []
+		},
+		{
+			"name": "Basics - Binding to Complex Type /Home/ActionWithComplexType",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57420/Home/ActionWithComplexType?sailor.firstname=Mack&sailor.isCapTAIn=true&sailor.age=45&sailor.legs=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57420",
+					"path": [
+						"Home",
+						"ActionWithComplexType"
+					],
+					"query": [
+						{
+							"key": "sailor.firstname",
+							"value": "Mack",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sailor.isCapTAIn",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sailor.age",
+							"value": "45",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sailor.legs",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sailor.firstName",
+							"value": "Zack",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "sailor.age",
+							"value": "50",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Shows how request values can be bound to a complex type.\n\nNote how certain Querystring values are ignore in favor of the POST body values.\n\nhttp://localhost:57420/Home/ActionWithComplexType"
+			},
+			"response": []
+		},
+		{
+			"name": "Basics - Binding to collection /Home/ActionWithCollection",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57420/Home/ActionWithCollection?sailors[1].surName=Sparrow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57420",
+					"path": [
+						"Home",
+						"ActionWithCollection"
+					],
+					"query": [
+						{
+							"key": "sailors[1].surName",
+							"value": "Sparrow",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sailors[0].firstName",
+							"value": "John",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "sailors[1].firstNamE",
+							"value": "Jack",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "sailors[1].surNamE",
+							"value": "Silver",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Shows how request values can be bound to a collection.\n\nNotice how values are case insensitive and how the querystring value is overridden by the POST body.\n\nhttp://localhost:57420/Home/ActionWithCollection"
+			},
+			"response": []
+		},
+		{
+			"name": "Binding Attributes - FromQuery /Home/ActionWithQueryBindsOnly",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57420/Home/ActionWithQueryBindsOnly?firstname=Mack&isCapTAIn=true&age=45&legs=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57420",
+					"path": [
+						"Home",
+						"ActionWithQueryBindsOnly"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Mack",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "isCapTAIn",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "age",
+							"value": "45",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "legs",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "Zack",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "50",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Shows how binding attributes can pick the binding source\n\nNote that only QueryString values are bound\n\nhttp://localhost:57420/Home/ActionWithQueryBindsOnly"
+			},
+			"response": []
+		},
+		{
+			"name": "Binding Attributes - FromHeader /Home/ActionWithHeaderBinds",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57420/Home/ActionWithHeaderBinds?firstname=Leroy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57420",
+					"path": [
+						"Home",
+						"ActionWithHeaderBinds"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Leroy",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "surName",
+						"value": "Jenkins",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Shows how binding attributes can pick the binding source\n\nNote that without the [FromHeader] attribute, the surName value would be ignored\n\nhttp://localhost:57420/Home/ActionWithHeaderBinds"
+			},
+			"response": []
+		},
+		{
+			"name": "Binding Attributes - JSON Body /Home/ActionWithJsonBody",
+			"request": {
+				"url": {
+					"raw": "http://localhost:57420/Home/ActionWithJsonBody?sailor.firstname=Mack&sailor.isCapTAIn=true&sailor.age=45&sailor.legs=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57420",
+					"path": [
+						"Home",
+						"ActionWithJsonBody"
+					],
+					"query": [
+						{
+							"key": "sailor.firstname",
+							"value": "Mack",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sailor.isCapTAIn",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sailor.age",
+							"value": "45",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sailor.legs",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"Jules\",\n\t\"surName\" : \"Verne\",\n\t\"NICKName\": \"De Juul\",\n\t\"Legs\" : 2\n}"
+				},
+				"description": "Shows how a JSON body is parsed by the [FromBody] attribute\nThis is useful for AJAX calls.\n\nNote how there can only be one [FromBody] attribute.\n\nhttp://localhost:57420/Home/ActionWithJsonBody"
+			},
+			"response": []
+		}
+	]
+}

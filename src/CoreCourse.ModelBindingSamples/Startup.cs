@@ -16,6 +16,7 @@ namespace CoreCourse.ModelBindingSamples
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,11 +28,23 @@ namespace CoreCourse.ModelBindingSamples
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app
+                .UseStaticFiles()
+                .UseMvc(routes =>
+                    {
+                        routes
+                        .MapRoute(
+                            name: "Home-actionWithRoute",
+                            template: "Home/ActionWithPrimitives/{firstName}/{surName}/{nickName}/{legs:int}/{isCaptain:bool}/{age:int?}",
+                            defaults: new { controller = "Home", action = "ActionWithPrimitives" }
+                        )
+                        .MapRoute(
+                            name: "default",
+                            template: "{controller}/{action}/{id?}",
+                            defaults: new { controller = "Home", action = "Index" }
+                        );
+                    })
+                ;
         }
     }
 }
